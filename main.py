@@ -25,8 +25,8 @@ class PrettyCurrencyInfo:
             for curr in exchange_info:
                 if curr['currency'] in CURRENCY_TYPES:
                     tmp[curr['currency']] = {
-                        'sale': curr['saleRateNB'],
-                        'purchase': curr['purchaseRateNB']}
+                        'sale': curr['saleRate'],
+                        'purchase': curr['purchaseRate']}
             res.append({date: tmp})
         return res
 
@@ -95,6 +95,6 @@ if __name__ == '__main__':
     currency_list = asyncio.run(exchanger.exchange_rate(days_num))
     normalyzed_curr_list = normalyzer.normalyze(currency_list)
 
-    # save_to_json(normalyzed_curr_list, FILENAME)
+    save_to_json(normalyzed_curr_list, FILENAME)
 
     print(json.dumps(normalyzed_curr_list, indent=2))
